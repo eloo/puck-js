@@ -1,16 +1,16 @@
 function updateAdv() {
 //      digitalPulse(LED1, true, 200);
-//      var data = [E.getBattery(), E.getTemperature()];
-//      var data = E.getBattery();
-//      var sensor_data = {};
-//      sensor_data.temp = E.getTemperature();
-//      sensor_data.batt = E.getBattery();
-      NRF.setAdvertising({
-          0x180f : [Puck.getBatteryPercentage()],
-          0x1809 : [E.getTemperature()]
-        });
-//      console.log(data); // for debugging
-    }
+  var sensor_data = {};
+  sensor_data.temp = E.getTemperature();
+  sensor_data.batt = E.getBattery();
+  json_data = JSON.stringify(sensor_data);
+//  console.log(json_data); // for debugging
+  NRF.setAdvertising({},{
+    showName:false,
+    manufacturer:0x0590,
+    manufacturerData:json_data
+  });
+}
 
 updateAdv(); // start off right now
 setInterval(updateAdv, 60000); // update every 60 seconds
