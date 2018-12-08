@@ -13,7 +13,8 @@ function updateAdv() {
 }
 
 updateAdv(); // start off right now
-setInterval(updateAdv, 60000); // update every 60 seconds
+interval = 300 * 1000;
+setInterval(updateAdv, interval);
 
 
 /*setWatch(function(e) {
